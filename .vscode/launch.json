@@ -11,7 +11,7 @@
             "runtimeExecutable": "nodemon",
             "program": "${workspaceFolder}/server/app.js",
             "console":"internalConsole"
-            ,"preLaunchTask": "gulp: watch" // Run before yje debug step causes debug to never start.
+            //,"preLaunchTask": "gulp: watch" // Run before yje debug step causes debug to never start.
         }
     ]
 }

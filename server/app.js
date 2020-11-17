@@ -13,5 +13,5 @@ app.get('/api', (req, res) => {
 })
 
 app.listen(port, () => {
-    console.log('running on http://localhost:3000/ Right Now!')
+    console.log('running on http://localhost:3000/');
 })
