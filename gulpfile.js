@@ -5,8 +5,16 @@ var useref      = require('gulp-useref');
 var cssnano     = require('gulp-cssnano');
 var uglify      = require('gulp-uglify');
 var del         = require('del');
-var browser     = require('browser-sync').create();
 var glob        = require("glob");
+var open        = require('gulp-open');
+var watch       = require('gulp-watch');
+var run         = require('gulp-run');
+
+const { parallel } = require('gulp');
+
+var browser     = require('browser-sync').create();
+
+const URI = 'http://localhost:3000/';
 
 gulp.task(  'sass', () => {
     return gulp.src('./app/scss/**.scss')
@@ -26,8 +34,8 @@ gulp.task('cssnano', () => {
     glob('app/css/*.css','',(e, m) => console.log(m) );
 
     return gulp.src('app/css/*.css')
-    .pipe(cssnano())
-    .pipe(gulp.dest('dist/css'))
+                .pipe(cssnano())
+                .pipe(gulp.dest('dist/css'))
 })
 
 gulp.task('useref',() => {
@@ -49,14 +57,21 @@ gulp.task('build', gulp.series( 'sass'
                               , 'useref' 
                               , 'uglify' ));
 
-gulp.task( 'watch', gulp.series( 'build'
-                               //, 'browser'
-                               , () => gulp.watch( [ 'app/scss/'
-                                                   , 'app/js/'
-                                                   , 'app/fonts/'
-                                                   , 'app/pages/'
-                                                   , 'app/*.html' ]  
-                                                 , gulp.series( ['build'] ))
-                                ));
+gulp.task('open', function(){
+    gulp.src(__filename)
+    .pipe(open({uri: URI}));
+});
+
+gulp.task( 'init-watch', () => {
+    return gulp.watch( [ 'client/app/scss/', 'client/app/js/', 'client/app/fonts/', 'client/app/pages/', 'client/app/*.html' ], gulp.series('build'));
+});
+
+gulp.task( 'server' , () => {
+    return run('node ./server/app.js').exec()
+})
+
+gulp.task( 'watch-server', gulp.series(['build',parallel('server', 'init-watch', 'open' )]))
+
+gulp.task( 'watch' , gulp.series( ['build', parallel( 'init-watch', 'open')] ));
 
 gulp.task('clean', () => { return del.sync('dist'); })
