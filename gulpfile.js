@@ -17,37 +17,37 @@ var browser     = require('browser-sync').create();
 const URI = 'http://localhost:3000/';
 
 gulp.task(  'sass', () => {
-    return gulp.src('./app/scss/**.scss')
+    return gulp.src('./client/app/scss/**.scss')
         .pipe(gulp_sass())
-        .pipe(gulp.dest('./app/css'))
+        .pipe(gulp.dest('./client/app/css'))
         .pipe(browser.reload({stream: true}));
 });
 
 gulp.task('uglify', () => {
-    glob('app/js/*.js','',  (e, m) => console.log(m) );
-    return gulp.src('app/js/*.js')
+    glob('client/app/js/*.js','',  (e, m) => console.log(m) );
+    return gulp.src('client/app/js/*.js')
     .pipe(uglify())
 })
 
 gulp.task('cssnano', () => {
     //.pipe(gulpIf('app/css/*.css',  cssnano()))
-    glob('app/css/*.css','',(e, m) => console.log(m) );
+    glob('client/app/css/*.css','',(e, m) => console.log(m) );
 
-    return gulp.src('app/css/*.css')
+    return gulp.src('client/app/css/*.css')
                 .pipe(cssnano())
-                .pipe(gulp.dest('dist/css'))
+                .pipe(gulp.dest('client/dist/css'))
 })
 
 gulp.task('useref',() => {
-    return gulp.src('app/*.html')
+    return gulp.src('client/app/*.html')
     .pipe(useref())
-    .pipe(gulp.dest('dist/', { overwrite: true } ));
+    .pipe(gulp.dest('client/dist/', { overwrite: true } ));
 });
 
 gulp.task( 'browser', () => {
     browser.init({
         server: {
-            baseDir: 'app'
+            baseDir: 'client/app'
         },
     })
 })
