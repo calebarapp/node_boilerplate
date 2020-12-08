@@ -1,0 +1,31 @@
+.menu {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin: 10px;
+    position: fixed;
+    top: 0;
+}
+
+.menu-container {
+    width: 100%;
+    display: flex;
+    justify-content: end;
+    height: 1.2em;
+}
+
+.menu-item {
+    width: 100px;
+    //margin: 20px;
+    height: 1.2 em;
+    cursor: pointer;
+}
+
+.brand {
+
+}
+
+.menu-item:hover {
+    color: rgb(100,100,100);
+}
+

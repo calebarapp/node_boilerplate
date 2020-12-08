@@ -1,19 +1,44 @@
 <!DOCTYPE html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/main.css" />
 </head>
 
+<!-- 
+Navbar:
+  - Right justify a list of menu options in wide screen.
+  - Mobile view will need a hamburger menu that calls a full screen dropdown.
+  - Menu should haveno background.
+  - Navbar will stcik to the top in bot modes.  
+Home
+  - Simple block displaying the logo, maybe some sort of link
+  OverView:
+  - block describing services.
+ 
+-->
+
+
+
 <body>
-  <nav class="navbar is-black">
-    <div class ="navbar-start">
-        <a class ="navbar-item">
-            Test
-        </a>
+
+  <nav class ="menu">
+    <!-- brand logo / link to home -->
+    <div class = "brand">
+      <a href = "/"> Logo </a> 
+    </div>
+
+    <!-- Main menu. justified to the right and only visible on desktop / Tablet. -->
+    <div class="menu-container">
+      <a class = "menu-item"   href = "/">Home</a>
+      <a class = "menu-item"   href = "/">Services</a>
+      <a class = "menu-item"  href = "/">Contact</a>
     </div>
 
   </nav>
-  <p>test 54321</p>
-      <script src="js/main.min.js"></script>
+    
+    
+
+    <script src="js/main.min.js"></script>
 </body>
